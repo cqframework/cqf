@@ -1,0 +1,12 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
+  <a name="intro"> </a>
+  <h3>Introduction</h3>
+	<p>This implementation guide contains common FHIR assets for use in CQFramework content IGs, including FHIRHelpers and the FHIR-ModelInfo libraries.</p>
+	<a name="technical"> </a>
+	<h3>Usage</h3>
+	<p>To use this implementation guide, include a reference to it in the dependsOn section of your implementation guide.</p>
+  <ul>
+    <li>TODO: Usage documentation</li>
+    <li>TODO: Link to Artifacts index</li>
+  </ul>
+</div>
