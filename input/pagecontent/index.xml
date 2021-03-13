@@ -1,5 +1,5 @@
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
-  <a name="intro"> </a>
+  <a name="introduction"> </a>
   <h3>Introduction</h3>
   <p>This implementation guide contains common FHIR assets for use in content IGs
     built using the approach and specifications developed as part of the Clinical
@@ -11,6 +11,7 @@
   <p>For more information on this approach, see the <a href="http://hl7.org/fhir/uv/cpg/approach.html">Approach</a>
   and <a href="http://hl7.org/fhir/uv/cpg/methodology.html">Methodology</a> sections of the FHIR
   Clinical Guidelines implementation guide.</p>
+  <a name="contents"> </a>
   <h3>Contents</h3>
   <p>This implementation guide contains libraries that facilitate the use of CQL with FHIR, as explained in the sections
     below. To use these libraries in your implementation guide, include a reference to this implementation guide as
@@ -21,6 +22,7 @@
   &lt;version value=&quot;4.0.1&quot;/&gt;
 &lt;/dependsOn&gt;</code></pre>
 
+  <a name="fhir-modelinfo"> </a>
   <h4>FHIR ModelInfo</h4>
   <p>Clinical Quality Language (<a href="http://cql.hl7.org">CQL</a>) is a high-level,
   domain-specific language focused on clinical quality and targeted at measure and
@@ -34,6 +36,7 @@
   declaration</a> as shown in the example below:</p>
   <pre><code>using FHIR version '4.0.1'</code></pre>
   <p>Although not required by CQL, current best-practice is to include the version of FHIR.</p>
+  <a name="fhir-helpers"> </a>
   <h4>FHIR Helpers</h4>
   <p>As an exchange specification, FHIR has a rich syntax for expressing the values of elements defined in FHIR
   resources. In particular, FHIR data types for representing basic values such as integers, strings, and dates and
