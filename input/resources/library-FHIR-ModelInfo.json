@@ -1,13 +1,19 @@
 {
   "resourceType": "Library",
   "id": "FHIR-ModelInfo",
-  "identifier": [
-    {
-      "use": "official",
-      "system": "http://example.org/fhir/cqi/ecqm/Library/Identifier",
-      "value": "FHIR"
-    }
-  ],
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-shareablelibrary", "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-publishablelibrary" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueCode": "shareable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeCapability",
+    "valueCode": "publishable"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
+    "valueCode": "structured"
+  } ],
   "version": "4.0.1",
   "name": "FHIR",
   "title": "FHIR Model Definition",
