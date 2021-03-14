@@ -7,7 +7,7 @@
 ],
    "formats":[
      "XML",
-     "JSON"
+     "JXSON"
    ],
    "validateUnits":true,
    "verifyOnly":false,
