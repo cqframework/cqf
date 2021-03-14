@@ -2,6 +2,7 @@
  "package-id" : "cqf.fhir.common",
  "title" : "Clinical Quality Framework Common FHIR Assets",
  "canonical" : "http://fhir.org/guides/cqf/common",
+ "category": "Quality / CDS",
  "introduction" : "This implementation guide contains common FHIR assets for use in CQFramework content IGs, including FHIRHelpers and the FHIR-ModelInfo libraries.",
  "list" : [{
   "version" : "current",
@@ -9,5 +10,12 @@
   "path" : "http://build.fhir.org/ig/cqframework/cqf",
   "status" : "ci-build",
   "current" : true
+ }, {
+  "version" : "4.0.1",
+  "fhirversion": "4.0.1",
+  "desc" : "Release 1",
+  "path" : "http://fhir.org/guides/cqf/common",
+  "status": "active",
+  "sequence": "Release 1"
  }]
 }
