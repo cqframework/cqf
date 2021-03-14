@@ -13,6 +13,7 @@
  }, {
   "version" : "4.0.1",
   "fhirversion": "4.0.1",
+  "date": "2021-03-14",
   "desc" : "Release 1",
   "path" : "http://fhir.org/guides/cqf/common",
   "status": "active",
