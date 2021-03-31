@@ -17,9 +17,13 @@
     below. To use these libraries in your implementation guide, include a reference to this implementation guide as
     an implementation guide dependency:</p>
   <pre><code>&lt;dependsOn id=&quot;cqf&quot;&gt;
-  &lt;uri value=&quot;http://fhir.org/guides/cqf/ImplementationGuide/cqf.fhir.common&quot;/&gt;
+  &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/cqf.fhir.common&quot;/&gt;
   &lt;packageId value=&quot;cqf.fhir.common&quot;/&gt;
+  &lt;!--NOTE: Use the dev version here because the CQF IG has not yet been published.
+  Note that this also means that the CQF IG must be built locally in order to be installed in your local FHIR package cache
   &lt;version value=&quot;4.0.1&quot;/&gt;
+  --&gt;
+  &lt;version value=&quot;dev&quot;/&gt;
 &lt;/dependsOn&gt;</code></pre>
 
   <a name="fhir-modelinfo"> </a>
@@ -57,4 +61,12 @@
   <p>Again, the version of the library is not required by CQL, but for the FHIRHelpers reference, because it is so closely tied to the
   FHIR ModelInfo, current best-practice is to include the version of FHIRHelpers. This does not imply that all library references
   should be versioned, that is a decision left up to implementations.</p>
+
+  <a name="fhir-common"> </a>
+  <h4>FHIR Common</h4>
+  <p>In addition to FHIR Helpers, the <a href="Library-FHIRCommon.html">FHIR Common</a> library contains several useful constructs for
+    FHIR-based CQL artifact development, including declarations for commonly used terminologies,
+    as well as functions for dealing with common choice patterns and extensions.</p>
+  <p>Note that FHIRCommon is not a "well-known" library name, so it must be included using it's namespace:</p>
+  <pre><code>include cqf.fhir.common.FHIRCommon</code></pre>
 </div>
