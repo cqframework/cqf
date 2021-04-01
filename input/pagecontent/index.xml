@@ -1,7 +1,8 @@
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
   <a name="introduction"> </a>
   <h3>Introduction</h3>
-  <p>This implementation guide contains common FHIR assets for use in content IGs
+  <p>This implementation guide contains common HL7® Fast Healthcare Interoperability
+    Resources (<a href="http://hl7.org/fhir">FHIR®</a>) assets for use in content IGs
     built using the approach and specifications developed as part of the Clinical
     Quality Framework (<a href="https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework">CQF</a>)
     initiative, including the FHIRHelpers and FHIR-ModelInfo libraries.</p>
@@ -13,7 +14,7 @@
   Clinical Guidelines implementation guide.</p>
   <a name="contents"> </a>
   <h3>Contents</h3>
-  <p>This implementation guide contains libraries that facilitate the use of CQL with FHIR, as explained in the sections
+  <p>This implementation guide contains libraries that facilitate the use of CQL with FHIR®, as explained in the sections
     below. To use these libraries in your implementation guide, include a reference to this implementation guide as
     an implementation guide dependency:</p>
   <pre><code>&lt;dependsOn id=&quot;cqf&quot;&gt;
