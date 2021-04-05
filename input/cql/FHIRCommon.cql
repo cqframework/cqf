@@ -19,6 +19,9 @@ codesystem "ConditionVerificationStatusCodes": 'http://terminology.hl7.org/CodeS
 codesystem "AllergyIntoleranceClinicalStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical'
 codesystem "AllergyIntoleranceVerificationStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-verification'
 
+valueset "Active Condition": 'http://fhir.org/guides/cqf/cqf-common/ValueSet/active-condition'
+valueset "Inactive Condition": 'http://fhir.org/guides/cqf/cqf-common/ValueSet/inactive-condition'
+
 code "Birthdate": '21112-8' from "LOINC" display 'Birth date'
 code "Dead": '419099009' from "SNOMEDCT" display 'Dead'
 code "ER": 'ER' from "RoleCode" display 'Emergency room'
