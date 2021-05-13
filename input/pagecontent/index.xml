@@ -16,7 +16,7 @@
   <h3>Roadmap</h3>
   <p>This project uses the <a href="http://fhir.org/community/process/">FHIR Community Process</a>. For
   complete documentation on the change management process used, refer to the
-  <a href="https://github.com/cqframework/cqf/CHANGE_MANAGEMENT.md">Change Management</a> documentation.
+  <a href="https://github.com/cqframework/cqf/blob/master/CHANGE_MANAGEMENT.md">Change Management</a> documentation.
   </p>
   <p>This first release of the CQF Common implementation guide supports use of CQL v1.4+ with FHIR v4.01 and CPG v1.0.0. This
     content will be periodically updated as required to incorporate support for new versions of FHIR, CQL, and CPG as they are
