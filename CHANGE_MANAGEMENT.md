@@ -3,7 +3,7 @@ This project is a meritocratic, consensus-based community project. Anyone with i
 
 The processes described here are adapted from the [OSSWatch Meritocratic Model](http://oss-watch.ac.uk/resources/meritocraticgovernancemodel).
 
-This project also uses the [FHIR Community Process](http://fhir.org/community/process/) to ensure that the resulting content is consistent with quality and usage expectations in the FHIR community overall, ensure stakeholder representation and community input is respected, and minimize incompatibilities in outputs and processes between different projects. See the [Relationship to FCP](relationship-to-fcp) topic for a description of how this project's change management processes meet the requirements of the FHIR Community Process.
+This project also uses the [FHIR Community Process](http://fhir.org/community/process/) to ensure that the resulting content is consistent with quality and usage expectations in the FHIR community overall, ensure stakeholder representation and community input is respected, and minimize incompatibilities in outputs and processes between different projects. See the [Relationship to FCP](#relationship-to-fcp) topic for a description of how this project's change management processes meet the requirements of the FHIR Community Process.
 
 ## Roles
 ### Stakeholders
