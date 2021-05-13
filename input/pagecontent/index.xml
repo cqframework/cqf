@@ -12,6 +12,18 @@
   <p>For more information on this approach, see the <a href="http://hl7.org/fhir/uv/cpg/approach.html">Approach</a>
   and <a href="http://hl7.org/fhir/uv/cpg/methodology.html">Methodology</a> sections of the FHIR
   Clinical Guidelines implementation guide.</p>
+  <a name="roadmap"> </a>
+  <h3>Roadmap</h3>
+  <p>This project uses the <a href="http://fhir.org/community/process/">FHIR Community Process</a>. For
+  complete documentation on the change management process used, refer to the
+  <a href="https://github.com/cqframework/cqf/CHANGE_MANAGEMENT.md">Change Management</a> documentation.
+  </p>
+  <p>This first release of the CQF Common implementation guide supports use of CQL v1.4+ with FHIR v4.01 and CPG v1.0.0. This
+    content will be periodically updated as required to incorporate support for new versions of FHIR, CQL, and CPG as they are
+    published, and as needed by projects that make use of these assets.</p>
+  <p>To submit feedback on this project, submit a <a href="https://github.com/cqframework/cqf/issues/new">New Issue</a> on
+  Github (also linked in the Propose a change link in the footer of every page of the IG).</p>
+
   <a name="contents"> </a>
   <h3>Contents</h3>
   <p>This implementation guide contains libraries that facilitate the use of CQL with FHIR®, as explained in the sections

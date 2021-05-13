@@ -20,7 +20,7 @@
 				<name value="Bryn Rhodes"/>
 			</valueContactDetail>
 		</extension>
-    <url value="http://fhir.org/guides/cqf/cqf-common/ValueSet/inactive-condition"/>
+    <url value="http://fhir.org/guides/cqf/common/ValueSet/inactive-condition"/>
     <version value="0.1.0"/>
     <name value="CQFInactiveCondition"/>
     <title value="CQF Inactive Condition"/>

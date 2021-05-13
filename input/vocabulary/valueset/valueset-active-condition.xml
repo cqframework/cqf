@@ -20,7 +20,7 @@
 				<name value="Bryn Rhodes"/>
 			</valueContactDetail>
 		</extension>
-    <url value="http://fhir.org/guides/cqf/cqf-common/ValueSet/active-condition"/>
+    <url value="http://fhir.org/guides/cqf/common/ValueSet/active-condition"/>
     <version value="0.1.0"/>
     <name value="CQFActiveCondition"/>
     <title value="CQF Active Condition"/>
