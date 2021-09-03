@@ -10,11 +10,11 @@
   <title value="Clinical Quality Framework Common FHIR Assets"/>
   <status value="draft"/>
   <experimental value="false"/>
-  <publisher value="Clinical Quality Framework"/>
+  <publisher value="Alphora"/>
   <contact>
     <telecom>
       <system value="url"/>
-      <value value="http://github.com/cqframework"/>
+      <value value="http://alphora.com"/>
     </telecom>
   </contact>
   <description value="This implementation guide contains common FHIR assets for use in CQFramework content IGs, including FHIRHelpers and the FHIR-ModelInfo libraries."/>
@@ -25,7 +25,7 @@
     </coding>
   </jurisdiction>
   <packageId value="cqf.fhir.common"/>
-  <license value="CC0-1.0"/>
+  <license value="Apache-2.0"/>
   <fhirVersion value="4.0.1"/>
   <dependsOn id="cpg">
     <uri value="http://hl7.org/fhir/uv/cpg/ImplementationGuide/hl7.fhir.uv.cpg"/>
@@ -67,7 +67,7 @@
     <!-- releaselabel should be the ballot status for HL7-published IGs. -->
     <parameter>
       <code value="releaselabel"/>
-      <value value="CI Build"/>
+      <value value="release"/>
     </parameter>
     <parameter>
       <code value="find-other-resources"/>
@@ -95,28 +95,5 @@
       <code value="path-suppressed-warnings"/>
       <value value="input/ignoreWarnings.txt"/>
     </parameter>
-    <!-- Allow the domain CPG. This does prevent a few of the errors,
-    but the canonical URLs for extensions and profiles from this domain still result in errors... -->
-    <parameter>
-      <code value="extension-domain"/>
-      <value value="http://hl7.org/fhir/uv/cpg"/>
-    </parameter>
-<!-- Uncomment one or more of these if you want to limit which syntaxes are supported or want to disable the display of mappings
-    <parameter>
-      <code value="excludexml"/>
-      <value value="true"/>
-    </parameter>
-    <parameter>
-      <code value="excludejson"/>
-      <value value="true"/>
-    </parameter>
-    <parameter>
-      <code value="excludettl"/>
-      <value value="true"/>
-    </parameter>
-    <parameter>
-      <code value="excludemap"/>
-      <value value="true"/>
-    </parameter>-->
   </definition>
 </ImplementationGuide>

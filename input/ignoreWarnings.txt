@@ -19,9 +19,9 @@ INFORMATION: Library/FHIRCommon: Library/FHIRCommon: Library: Validate resource 
 INFORMATION: Library/FHIRCommon: Library/FHIRCommon: Library: Validate resource against profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary - listed in meta
 
 # Confirmed these are due to the same element sliced in different profiles
-INFORMATION: Library/FHIRCommon: Library/FHIRCommon: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRCommon: Library/FHIRCommon: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRCommon: Library/FHIRCommon: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
+INFORMATION: Library/FHIRCommon: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRCommon: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRCommon: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
 
 # Confirmed expected profile
 == C:\Users\Bryn\Documents\Src\CQF\cqf\input\resources\library-FHIRCommonTests.json ==
@@ -32,9 +32,9 @@ INFORMATION: Library/FHIRCommonTests: Library/FHIRCommonTests: Library: Validate
 INFORMATION: Library/FHIRCommonTests: Library/FHIRCommonTests: Library: Validate resource against profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary - listed in meta
 
 # Confirmed these are due to the same element sliced in different profiles
-INFORMATION: Library/FHIRCommonTests: Library/FHIRCommonTests: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRCommonTests: Library/FHIRCommonTests: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRCommonTests: Library/FHIRCommonTests: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
+INFORMATION: Library/FHIRCommonTests: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRCommonTests: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRCommonTests: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
 
 # Confirmed expected profile
 == C:\Users\Bryn\Documents\Src\CQF\cqf\input\resources\library-FHIRHelpers.json ==
@@ -45,11 +45,11 @@ INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library: Validate resourc
 INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library: Validate resource against profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary - listed in meta
 
 # Confirmed these are due to the same element sliced in different profiles
-INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
-INFORMATION: Library/FHIRHelpers: Library/FHIRHelpers: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
+INFORMATION: Library/FHIRHelpers: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRHelpers: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRHelpers: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRHelpers: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
+INFORMATION: Library/FHIRHelpers: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
 
 # Confirmed expected profile
 == C:\Users\Bryn\Documents\Src\CQF\cqf\input\resources\library-FHIRHelpersTests.json ==
@@ -60,11 +60,11 @@ INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library: Valida
 INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library: Validate resource against profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary - listed in meta
 
 # Confirmed these are due to the same element sliced in different profiles
-INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
-INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
-INFORMATION: Library/FHIRHelpersTests: Library/FHIRHelpersTests: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
+INFORMATION: Library/FHIRHelpersTests: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRHelpersTests: Library.content[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRHelpersTests: Library.content[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-computablelibrary
+INFORMATION: Library/FHIRHelpersTests: Library.relatedArtifact[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
+INFORMATION: Library/FHIRHelpersTests: Library.content[0]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-executablelibrary
 
 # Confirmed expected profile
 == C:\Users\Bryn\Documents\Src\CQF\cqf\input\vocabulary\valueset\valueset-active-condition.xml ==
