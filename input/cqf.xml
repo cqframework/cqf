@@ -24,6 +24,7 @@
       <code value="001"/>
     </coding>
   </jurisdiction>
+  <copyright value="© Alphora 2019+"/>
   <packageId value="cqf.fhir.common"/>
   <license value="Apache-2.0"/>
   <fhirVersion value="4.0.1"/>
@@ -59,6 +60,18 @@
         <generation value="html"/>
       </page>
     </page>
+    <parameter>
+      <code value="apply-publisher"/>
+      <value value="true"/>
+    </parameter>
+    <parameter>
+      <code value="apply-jurisdiction"/>
+      <value value="true"/>
+    </parameter>
+    <parameter>
+      <code value="apply-copyright"/>
+      <value value="true"/>
+    </parameter>
     <!-- copyright year is a mandatory parameter -->
     <parameter>
       <code value="copyrightyear"/>

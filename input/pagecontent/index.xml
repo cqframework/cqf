@@ -12,6 +12,11 @@
   <p>For more information on this approach, see the <a href="http://hl7.org/fhir/uv/cpg/approach.html">Approach</a>
   and <a href="http://hl7.org/fhir/uv/cpg/methodology.html">Methodology</a> sections of the FHIR
   Clinical Guidelines implementation guide.</p>
+  <p>This implementation guide was built as part of the Clinical Quality Framework community
+    by identifying and refactoring common patterns used across <a href="https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects#content">projects</a>.
+    Feedback and contributions are welcome and can be submitted using the New Issue link in the footer of every page. Discussions on the
+    use of this IG as well as other CQF projects take place regularly on the <a href="https://confluence.hl7.org/display/CDS/CPGonFHIR">CPG-on-FHIR calls</a>,
+    a subworkgroup of the HL7 Clinical Decision Support Workgroup.</p>
   <a name="roadmap"> </a>
   <h3>Roadmap</h3>
   <p>This project uses the <a href="http://fhir.org/community/process/">FHIR Community Process</a>. For
