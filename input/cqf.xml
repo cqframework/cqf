@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ImplementationGuide xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../input-cache/schemas/R5/fhir-single.xsd">
-  <id value="cqf.fhir.common"/>
+  <id value="fhir.cqf.common"/>
 <!--  <extension url="http://hl7.org/fhir/tools/StructureDefinition/igpublisher-spreadsheet">
     <valueString value="resources-spreadsheet.xml"/>
   </extension>-->
-  <url value="http://fhir.org/guides/cqf/common/ImplementationGuide/cqf.fhir.common"/>
+  <url value="http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common"/>
   <version value="4.0.1"/>
   <name value="CQFCommon"/>
   <title value="Clinical Quality Framework Common FHIR Assets"/>
@@ -25,7 +25,7 @@
     </coding>
   </jurisdiction>
   <copyright value="© Alphora 2019+"/>
-  <packageId value="cqf.fhir.common"/>
+  <packageId value="fhir.cqf.common"/>
   <license value="Apache-2.0"/>
   <fhirVersion value="4.0.1"/>
   <dependsOn id="cpg">

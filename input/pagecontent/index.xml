@@ -35,8 +35,8 @@
     below. To use these libraries in your implementation guide, include a reference to this implementation guide as
     an implementation guide dependency:</p>
   <pre><code class="language-xml">&lt;dependsOn id=&quot;cqf&quot;&gt;
-  &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/cqf.fhir.common&quot;/&gt;
-  &lt;packageId value=&quot;cqf.fhir.common&quot;/&gt;
+  &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common&quot;/&gt;
+  &lt;packageId value=&quot;fhir.cqf.common&quot;/&gt;
   &lt;!--NOTE: Use the dev version here because the CQF IG has not yet been published.
   Note that this also means that the CQF IG must be built locally in order to be installed in your local FHIR package cache
   &lt;version value=&quot;4.0.1&quot;/&gt;
@@ -86,5 +86,5 @@
     FHIR-based CQL artifact development, including declarations for commonly used terminologies,
     as well as functions for dealing with common choice patterns and extensions.</p>
   <p>Note that FHIRCommon is not a "well-known" library name, so it must be included using it's namespace:</p>
-  <pre><code class="language-cql">include cqf.fhir.common.FHIRCommon</code></pre>
+  <pre><code class="language-cql">include fhir.cqf.common.FHIRCommon</code></pre>
 </div>
