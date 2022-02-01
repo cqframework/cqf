@@ -12,6 +12,11 @@
   <p>For more information on this approach, see the <a href="http://hl7.org/fhir/uv/cpg/approach.html">Approach</a>
   and <a href="http://hl7.org/fhir/uv/cpg/methodology.html">Methodology</a> sections of the FHIR
   Clinical Guidelines implementation guide.</p>
+  <p>This implementation guide was built as part of the Clinical Quality Framework community
+    by identifying and refactoring common patterns used across <a href="https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects#content">projects</a>.
+    Feedback and contributions are welcome and can be submitted using the New Issue link in the footer of every page. Discussions on the
+    use of this IG as well as other CQF projects take place regularly on the <a href="https://confluence.hl7.org/display/CDS/CPGonFHIR">CPG-on-FHIR calls</a>,
+    a subworkgroup of the HL7 Clinical Decision Support Workgroup.</p>
   <a name="roadmap"> </a>
   <h3>Roadmap</h3>
   <p>This project uses the <a href="http://fhir.org/community/process/">FHIR Community Process</a>. For
@@ -30,8 +35,8 @@
     below. To use these libraries in your implementation guide, include a reference to this implementation guide as
     an implementation guide dependency:</p>
   <pre><code class="language-xml">&lt;dependsOn id=&quot;cqf&quot;&gt;
-  &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/cqf.fhir.common&quot;/&gt;
-  &lt;packageId value=&quot;cqf.fhir.common&quot;/&gt;
+  &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common&quot;/&gt;
+  &lt;packageId value=&quot;fhir.cqf.common&quot;/&gt;
   &lt;!--NOTE: Use the dev version here because the CQF IG has not yet been published.
   Note that this also means that the CQF IG must be built locally in order to be installed in your local FHIR package cache
   &lt;version value=&quot;4.0.1&quot;/&gt;
@@ -81,5 +86,5 @@
     FHIR-based CQL artifact development, including declarations for commonly used terminologies,
     as well as functions for dealing with common choice patterns and extensions.</p>
   <p>Note that FHIRCommon is not a "well-known" library name, so it must be included using it's namespace:</p>
-  <pre><code class="language-cql">include cqf.fhir.common.FHIRCommon</code></pre>
+  <pre><code class="language-cql">include fhir.cqf.common.FHIRCommon</code></pre>
 </div>

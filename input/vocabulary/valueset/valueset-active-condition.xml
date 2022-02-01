@@ -27,16 +27,8 @@
     <status value="active"/>
     <experimental value="false"/>
     <date value="2019-07-21"/>
-    <publisher value="Health Level 7 International - Clinical Decision Support WG"/>
-    <contact>
-      <telecom>
-        <system value="url"/>
-        <value value="http://www.hl7.org/Special/committees/dss/index.cfm"/>
-      </telecom>
-    </contact>
     <description value="Active condition clinical status codes"/>
     <purpose value="Used to specify the set of clinical status codes that are considered active"/>
-    <copyright value="© HL7 2016+."/>
     <compose>
         <include>
             <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>

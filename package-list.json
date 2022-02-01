@@ -1,5 +1,5 @@
 {
- "package-id" : "cqf.fhir.common",
+ "package-id" : "fhir.cqf.common",
  "title" : "Clinical Quality Framework Common FHIR Assets",
  "canonical" : "http://fhir.org/guides/cqf/common",
  "category": "Quality / CDS",
