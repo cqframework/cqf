@@ -10,6 +10,7 @@ include FHIRHelpers version '4.0.1'
 
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
+codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
 codesystem "RoleCode": 'http://terminology.hl7.org/CodeSystem/v3-RoleCode'
 codesystem "Diagnosis Role": 'http://terminology.hl7.org/CodeSystem/diagnosis-role'
 codesystem "RequestIntent": 'http://terminology.hl7.org/CodeSystem/request-intent'
@@ -18,6 +19,8 @@ codesystem "ConditionClinicalStatusCodes": 'http://terminology.hl7.org/CodeSyste
 codesystem "ConditionVerificationStatusCodes": 'http://terminology.hl7.org/CodeSystem/condition-ver-status'
 codesystem "AllergyIntoleranceClinicalStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical'
 codesystem "AllergyIntoleranceVerificationStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-verification'
+codesystem "ConditionCategoryCodes": 'http://terminology.hl7.org/CodeSystem/condition-category'
+codesystem "ObservationCategoryCodes": 'http://terminology.hl7.org/CodeSystem/observation-category'
 
 valueset "Active Condition": 'http://fhir.org/guides/cqf/common/ValueSet/active-condition'
 valueset "Inactive Condition": 'http://fhir.org/guides/cqf/common/ValueSet/inactive-condition'
@@ -66,13 +69,47 @@ code "pre-op": 'pre-op' from "Diagnosis Role" display 'pre-op diagnosis'
 code "post-op": 'post-op' from "Diagnosis Role" display 'post-op diagnosis'
 code "billing": 'billing' from "Diagnosis Role" display 'billing diagnosis'
 
+// Observation Category Codes
+code "social-history": 'social-history' from "ObservationCategoryCodes" display 'Social History'
+code "vital-signs": 'vital-signs' from "ObservationCategoryCodes" display 'Vital Signs'
+code "imaging": 'imaging' from "ObservationCategoryCodes" display 'Imaging'
+code "laboratory": 'laboratory' from "ObservationCategoryCodes" display 'Laboratory'
+code "procedure": 'procedure' from "ObservationCategoryCodes" display 'Procedure'
+code "survey": 'survey' from "ObservationCategoryCodes" display 'Survey'
+code "exam": 'exam' from "ObservationCategoryCodes" display 'Exam'
+code "therapy": 'therapy' from "ObservationCategoryCodes" display 'Therapy'
+code "activity": 'activity' from "ObservationCategoryCodes" display 'Activity'
+
+// Condition Category Codes
+code "problem-list-item": 'problem-list-item' from "ConditionCategoryCodes" display 'Problem List Item'
+code "encounter-diagnosis": 'encounter-diagnosis' from "ConditionCategoryCodes" display 'Encounter Diagnosis'
+
 context Patient
 
 /*
 @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval
 @comment: Normalizes a choice type of FHIR.dateTime, FHIR.Period, FHIR.Timing, FHIR.instance, FHIR.string, FHIR.Age, or FHIR.Range types
 to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible
-representations for timing-valued elements in FHIR, allowing this function to be used across any resource. NOTE: Due to the
+representations for timing-valued elements in FHIR, allowing this function to be used across any resource.
+
+The input can be provided as a dateTime, Period, Timing, instant, string, Age, or Range.
+The intent of this function is to provide a clear and concise mechanism to treat single
+elements that have multiple possible representations as intervals so that logic doesn't have to account
+for the variability. More complex calculations (such as medication request period or dispense period
+calculation) need specific guidance and consideration. That guidance may make use of this function, but
+the focus of this function is on single element calculations where the semantics are unambiguous.
+If the input is a dateTime, the result a DateTime Interval beginning and ending on that dateTime.
+If the input is a Period, the result is a DateTime Interval.
+If the input is a Timing, an error is raised indicating a single interval cannot be computed from a Timing.
+If the input is an instant, the result is a DateTime Interval beginning and ending on that instant.
+If the input is a string, an error is raised indicating a single interval cannot be computed from a string.
+If the input is an Age, the result is a DateTime Interval beginning when the patient was the given Age,
+and ending immediately prior to when the patient was the given Age plus one year.
+If the input is a Range, the result is a DateTime Interval beginning when the patient was the Age given
+by the low end of the Range, and ending immediately prior to when the patient was the Age given by the
+high end of the Range plus one year.
+
+NOTE: Due to the
 complexity of determining a single interval from a Timing or String type, this function will throw a run-time exception if it is used
 with a Timing or String.
 */

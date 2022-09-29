@@ -1,8 +1,8 @@
 /*
 @author: Bryn Rhodes
-@description: This library defines functions to convert between FHIR
+@description: This library defines functions to convert between FHIR 
  data types and CQL system-defined types, as well as functions to support
- FHIRPath implementation. For more information, see the FHIRHelpers wiki page:
+ FHIRPath implementation. For more information, the FHIRHelpers wiki page:
  https://github.com/cqframework/clinical_quality_language/wiki/FHIRHelpers
 @allowFluent: true
 */
@@ -115,36 +115,315 @@ define function ToConcept(concept FHIR.CodeableConcept):
             display: concept.text.value
         }
 
+define function ToValueSet(uri String):
+    if uri is null then
+        null
+    else
+        System.ValueSet {
+            id: uri
+        }
+
 define function reference(reference String):
     if reference is null then
         null
     else
         Reference { reference: string { value: reference } }
 
+define function ToValue(value Choice<base64Binary,
+        boolean,
+        canonical,
+        code,
+        date,
+        dateTime,
+        decimal,
+        id,
+        instant,
+        integer,
+        markdown,
+        oid,
+        positiveInt,
+        string,
+        time,
+        unsignedInt,
+        uri,
+        url,
+        uuid,
+        Address,
+        Age,
+        Annotation,
+        Attachment,
+        CodeableConcept,
+        Coding,
+        ContactPoint,
+        Count,
+        Distance,
+        Duration,
+        HumanName,
+        Identifier,
+        Money,
+        Period,
+        Quantity,
+        Range,
+        Ratio,
+        Reference,
+        SampledData,
+        Signature,
+        Timing,
+        ContactDetail,
+        Contributor,
+        DataRequirement,
+        Expression,
+        ParameterDefinition,
+        RelatedArtifact,
+        TriggerDefinition,
+        UsageContext,
+        Dosage,
+        Meta>):
+    case
+      when value is base64Binary then (value as base64Binary).value
+      when value is boolean then (value as boolean).value
+      when value is canonical then (value as canonical).value
+      when value is code then (value as code).value
+      when value is date then (value as date).value
+      when value is dateTime then (value as dateTime).value
+      when value is decimal then (value as decimal).value
+      when value is id then (value as id).value
+      when value is instant then (value as instant).value
+      when value is integer then (value as integer).value
+      when value is markdown then (value as markdown).value
+      when value is oid then (value as oid).value
+      when value is positiveInt then (value as positiveInt).value
+      when value is string then (value as string).value
+      when value is time then (value as time).value
+      when value is unsignedInt then (value as unsignedInt).value
+      when value is uri then (value as uri).value
+      when value is url then (value as url).value
+      when value is uuid then (value as uuid).value
+      when value is Age then ToQuantity(value as Age)
+      when value is CodeableConcept then ToConcept(value as CodeableConcept)
+      when value is Coding then ToCode(value as Coding)
+      when value is Count then ToQuantity(value as Count)
+      when value is Distance then ToQuantity(value as Distance)
+      when value is Duration then ToQuantity(value as Duration)
+      when value is Quantity then ToQuantity(value as Quantity)
+      when value is Range then ToInterval(value as Range)
+      when value is Period then ToInterval(value as Period)
+      when value is Ratio then ToRatio(value as Ratio)
+      else value as Choice<Address,
+        Annotation,
+        Attachment,
+        ContactPoint,
+        HumanName,
+        Identifier,
+        Money,
+        Reference,
+        SampledData,
+        Signature,
+        Timing,
+        ContactDetail,
+        Contributor,
+        DataRequirement,
+        Expression,
+        ParameterDefinition,
+        RelatedArtifact,
+        TriggerDefinition,
+        UsageContext,
+        Dosage,
+        Meta>
+    end
+
+/*
+@description: Resolve the given reference as a url to a resource. If the item resolves, the Resource is returned, otherwise the result is null.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function resolve(reference String) returns Resource: external
+/*
+@description: Resolve the reference element of the given Reference. If the item resolves, the Resource is returned, otherwise the result is null.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function resolve(reference Reference) returns Resource: external
+/*
+@description: Constructs a Reference to the given Resource. The resulting reference will typically be relative, but implementations may provide a base URL if one can be unambiguously determined.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function reference(resource Resource) returns Reference: external
-define function extension(element Element, url String) returns List<Element>: external
-define function extension(resource Resource, url String) returns List<Element>: external
+/*
+@description: Returns any extensions with the given url defined on the given element.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
+define function extension(element Element, url String) returns List<Extension>: external
+/*
+@description: Returns any extensions with the given url defined on the given resource.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
+define function extension(resource DomainResource, url String) returns List<Extension>: external
+/*
+@description: Returns any modifier extensions with the given url defined on the given element.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
+define function modifierExtension(element BackboneElement, url String) returns List<Extension>: external
+/*
+@description: Returns any modifier extensions with the given url defined on the given resource.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
+define function modifierExtension(resource DomainResource, url String) returns List<Extension>: external
+/*
+@description: Returns true if the element is a FHIR primitive type with a value element (as opposed to having only extensions); false otherwise
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function hasValue(element Element) returns Boolean: external
+/*
+@description: Returns the value of the FHIR primitive; null otherwise
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function getValue(element Element) returns Any: external
+/*
+@description: Returns a list containing only those elements in the input that are of the given type, specified as a string.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function ofType(identifier String) returns List<Any>: external
+/*
+@description: Returns true if the input is of the given type; false otherwise
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function is(identifier String) returns Boolean: external
+/*
+@description: If the input is of the given type; returns the value as that type; null otherwise.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function as(identifier String) returns Any: external
+/*
+@description: Returns the FHIR element definition for the given element
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function elementDefinition(element Element) returns ElementDefinition: external
+/*
+@description: Returns the given slice as defined in the given structure definition. The structure argument is a uri that resolves to the structure definition, and the name must be the name of a slice within that structure definition. If the structure cannot be resolved, or the name of the slice within the resolved structure is not present, an error is thrown.
+@comment: For every element in the input collection, if the resolved slice is present on the element, it will be returned. If the slice does not match any element in the input collection, or if the input collection is empty, the result is an empty collection ({ }).
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function slice(element Element, url String, name String) returns List<Element>: external
+/*
+@description: For each element in the input collection, verifies that there are no modifying extensions defined other than the ones given by the modifier argument. If the check passes, the input collection is returned. Otherwise, an error is thrown.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function checkModifiers(resource Resource) returns Resource: external
+/*
+@description: For each element in the input collection, verifies that there are no modifying extensions defined other than the ones given by the modifier argument. If the check passes, the input collection is returned. Otherwise, an error is thrown.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function checkModifiers(resource Resource, modifier String) returns Resource: external
+/*
+@description: For each element in the input collection, verifies that there are no modifying extensions defined other than the ones given by the modifier argument. If the check passes, the input collection is returned. Otherwise, an error is thrown.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function checkModifiers(element Element) returns Element: external
+/*
+@description: For each element in the input collection, verifies that there are no modifying extensions defined other than the ones given by the modifier argument. If the check passes, the input collection is returned. Otherwise, an error is thrown.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function checkModifiers(element Element, modifier String) returns Element: external
+/*
+@description: Returns true if the single input element conforms to the profile specified by the structure argument, and false otherwise. If the structure cannot be resolved to a valid profile, an error is thrown. If the input contains more than one element, an error is thrown. If the input is empty, the result is empty.
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function conformsTo(resource Resource, structure String) returns Boolean: external
+/*
+@description: Returns true if the given code is equal to a code in the valueset, so long as the valueset only contains one codesystem. If the valueset contains more than one codesystem, an error is thrown.
+@comment: If the valueset cannot be resolved as a uri to a value set, an error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+For example:
+
+```fhirpath
+Observation.component.where(code.memberOf('http://hl7.org/fhir/ValueSet/observation-vitalsignresult'))
+```
+
+This expression returns components that have a code that is a member of the observation-vitalsignresult valueset.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function memberOf(code code, valueSet String) returns Boolean: external
+/*
+@description: Returns true if the code is a member of the given valueset.
+@comment: If the valueset cannot be resolved as a uri to a value set, an error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+For example:
+
+```fhirpath
+Observation.component.where(code.memberOf('http://hl7.org/fhir/ValueSet/observation-vitalsignresult'))
+```
+
+This expression returns components that have a code that is a member of the observation-vitalsignresult valueset.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function memberOf(coding Coding, valueSet String) returns Boolean: external
+/*
+@description: Returns true if any code in the concept is a member of the given valueset.
+@comment: If the valueset cannot be resolved as a uri to a value set, an error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+For example:
+
+```fhirpath
+Observation.component.where(code.memberOf('http://hl7.org/fhir/ValueSet/observation-vitalsignresult'))
+```
+
+This expression returns components that have a code that is a member of the observation-vitalsignresult valueset.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function memberOf(concept CodeableConcept, valueSet String) returns Boolean: external
+/*
+@description: Returns true if the source code is equivalent to the given code, or if the source code subsumes the given code (i.e. the source code is an ancestor of the given code in a subsumption hierarchy), and false otherwise.
+
+@comment: If the Codings are from different code systems, the relationships between the code systems must be well-defined or a run-time error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function subsumes(coding Coding, subsumedCoding Coding) returns Boolean: external
+/*
+@description: Returns true if any Coding in the source or given elements is equivalent to or subsumes the given code.
+
+@comment: If the Codings are from different code systems, the relationships between the code systems must be well-defined or a run-time error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function subsumes(concept CodeableConcept, subsumedConcept CodeableConcept) returns Boolean: external
+/*
+@description: Returns true if the source code is equivalent to the given code, or if the source code is subsumed by the given code (i.e. the source code is a descendant of the given code in a subsumption hierarchy), and false otherwise.
+
+@comment: If the Codings are from different code systems, the relationships between the code systems must be well-defined or a run-time error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function subsumedBy(coding Coding, subsumingCoding Coding) returns Boolean: external
+/*
+@description: Returns true if any Coding in the source or given elements is equivalent to or subsumed by the given code.
+
+@comment: If the Codings are from different code systems, the relationships between the code systems must be well-defined or a run-time error is thrown.
+
+Note that implementations are encouraged to make use of a terminology service to provide this functionality.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function subsumedBy(concept CodeableConcept, subsumingConcept CodeableConcept) returns Boolean: external
+/*
+@description: When invoked on an xhtml element, returns true if the rules around HTML usage are met, and false if they are not. The return value is undefined (null) on any other kind of element.
+
+@seealso: https://hl7.org/fhir/fhirpath.html#functions
+*/
 define function htmlChecks(element Element) returns Boolean: external
 
 define function ToString(value AccountStatus): value.value
