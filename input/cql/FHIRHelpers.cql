@@ -10,6 +10,13 @@ library FHIRHelpers version '4.0.1'
 
 using FHIR version '4.0.1'
 
+/*
+@description: Converts the given [Period](https://hl7.org/fhir/datatypes.html#Period)
+value to a CQL DateTime Interval
+@comment: If the start value of the given period is unspecified, the starting
+boundary of the resulting interval will be open (meaning the start of the interval
+is unknown, as opposed to interpreted as the beginning of time).
+*/
 define function ToInterval(period FHIR.Period):
     if period is null then
         null
@@ -19,6 +26,12 @@ define function ToInterval(period FHIR.Period):
         else
             Interval[period."start".value, period."end".value]
 
+/*
+@description: Converts a UCUM definite duration unit to a CQL calendar duration
+unit using conversions specified in the [quantities](https://cql.hl7.org/02-authorsguide.html#quantities) 
+topic of the CQL specification.
+@comment: Note that for durations above days (or weeks), the conversion is understood to be approximate
+*/
 define function ToCalendarUnit(unit System.String):
     case unit
         when 'ms' then 'millisecond'
@@ -32,6 +45,14 @@ define function ToCalendarUnit(unit System.String):
         else unit
     end
 
+/*
+@description: Converts the given FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) 
+value to a CQL Quantity
+@comment: If the given quantity has a comparator specified, a runtime error is raised. If the given quantity
+has a system other than UCUM (i.e. `http://unitsofmeasure.org`) or CQL calendar units (i.e. `http://hl7.org/fhirpath/CodeSystem/calendar-units`)
+an error is raised. For UCUM to calendar units, the `ToCalendarUnit` function is used.
+@seealso: ToCalendarUnit
+*/
 define function ToQuantity(quantity FHIR.Quantity):
     case
         when quantity is null then null
@@ -45,6 +66,15 @@ define function ToQuantity(quantity FHIR.Quantity):
             Message(null, true, 'FHIRHelpers.ToQuantity.InvalidFHIRQuantity', 'Error', 'Invalid FHIR Quantity code: ' & quantity.unit.value & ' (' & quantity.system.value & '|' & quantity.code.value & ')')
     end
 
+/*
+@description: Converts the given FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) value to a CQL Quantity, ignoring
+the comparator element. This function should only be used when an application is justified in ignoring the comparator value (i.e. the
+context is looking for boundary).
+@comment: If the given quantity has a system other than UCUM (i.e. `http://unitsofmeasure.org`) or CQL calendar units 
+(i.e. `http://hl7.org/fhirpath/CodeSystem/calendar-units`) an error is raised. For UCUM to calendar units, the `ToCalendarUnit` function 
+is used.
+@seealso: ToCalendarUnit
+*/
 define function ToQuantityIgnoringComparator(quantity FHIR.Quantity):
     case
         when quantity is null then null
@@ -56,6 +86,15 @@ define function ToQuantityIgnoringComparator(quantity FHIR.Quantity):
             Message(null, true, 'FHIRHelpers.ToQuantity.InvalidFHIRQuantity', 'Error', 'Invalid FHIR Quantity code: ' & quantity.unit.value & ' (' & quantity.system.value & '|' & quantity.code.value & ')')
     end
 
+/*
+@description: Converts the given FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) value to a CQL Interval of Quantity.
+@comment: If the given quantity has a comparator, it is used to construct an interval based on the value of the comparator. If the comparator
+is less than, the resulting interval will start with a null closed boundary and end with an open boundary on the quantity. If the comparator
+is less than or equal, the resulting interval will start with a null closed boundary and end with a closed boundary on the quantity. If the 
+comparator is greater or equal, the resulting interval will start with a closed boundary on the quantity and end with a closed null boundary.
+If the comparator is greatter than, the resulting interval will start with an open boundary on the quantity and end with a closed null boundary.
+If no comparator is specified, the resulting interval will start and end with a closed boundary on the quantity.
+*/
 define function ToInterval(quantity FHIR.Quantity):
     if quantity is null then null else
         case quantity.comparator.value
@@ -83,18 +122,27 @@ define function ToInterval(quantity FHIR.Quantity):
                 Interval[ToQuantity(quantity), ToQuantity(quantity)]
         end
 
+/*
+@description: Converts the given FHIR [Ratio](https://hl7.org/fhir/datatypes.html#Ratio) value to a CQL Ratio.
+*/
 define function ToRatio(ratio FHIR.Ratio):
     if ratio is null then
         null
     else
         System.Ratio { numerator: ToQuantity(ratio.numerator), denominator: ToQuantity(ratio.denominator) }
 
+/*
+@description: Converts the given FHIR [Range](https://hl7.org/fhir/datatypes.html#Range) value to a CQL Interval of Quantity
+*/
 define function ToInterval(range FHIR.Range):
     if range is null then
         null
     else
         Interval[ToQuantity(range.low), ToQuantity(range.high)]
 
+/*
+@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.
+*/
 define function ToCode(coding FHIR.Coding):
     if coding is null then
         null
@@ -106,6 +154,9 @@ define function ToCode(coding FHIR.Coding):
           display: coding.display.value
         }
 
+/*
+@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.
+*/
 define function ToConcept(concept FHIR.CodeableConcept):
     if concept is null then
         null
@@ -115,6 +166,9 @@ define function ToConcept(concept FHIR.CodeableConcept):
             display: concept.text.value
         }
 
+/*
+@description: Converts the given value (assumed to be a URI) to a CQL [ValueSet](https://cql.hl7.org/09-b-cqlreference.html#valueset)
+*/
 define function ToValueSet(uri String):
     if uri is null then
         null
@@ -123,12 +177,19 @@ define function ToValueSet(uri String):
             id: uri
         }
 
+/*
+@description: Constructs a FHIR [Reference](https://hl7.org/fhir/datatypes.html#Reference) from the given reference (assumed to be a FHIR resource URL)
+*/
 define function reference(reference String):
     if reference is null then
         null
     else
         Reference { reference: string { value: reference } }
 
+/*
+@description: Converts the given value to a CQL value using the appropriate accessor or conversion function.
+@comment: TODO: document conversion
+*/
 define function ToValue(value Choice<base64Binary,
         boolean,
         canonical,
