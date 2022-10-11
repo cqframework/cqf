@@ -170,7 +170,8 @@ define TestCountSpecificallyConverts: FHIRHelpers.ToQuantity(TestCount) = 100 '1
   // MoneyQuantity
   // MoneyQuantity implicit conversions would result in a runtime error
   // SimpleQuantity
-define TestSimpleQuantity: SimpleQuantity { value: decimal { value: 10 }, unit: string { value: 'g' }, system: uri { value: 'http://unitsofmeasure.org' }, code: code { value: 'g' } }
+// NOTE: This expression cast as a Quantity because SimpleQuantity can't be represented in a FHIR DataRequirement in R5...
+define TestSimpleQuantity: (SimpleQuantity { value: decimal { value: 10 }, unit: string { value: 'g' }, system: uri { value: 'http://unitsofmeasure.org' }, code: code { value: 'g' } }) as Quantity
 define TestSimpleQuantityConverts: TestSimpleQuantity = 10 'g'
 define TestSimpleQuantitySpecificallyConverts: FHIRHelpers.ToQuantity(TestSimpleQuantity) = 10 'g'
 
