@@ -2,11 +2,11 @@
 @author: Bryn Rhodes
 @description: Common terminologies and functions used in FHIR-based CQL artifacts
 */
-library FHIRCommon version '4.0.1'
+library FHIRCommon version '4.1.0'
 
 using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.0.1'
+include FHIRHelpers version '4.1.0'
 
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'

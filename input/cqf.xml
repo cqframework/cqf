@@ -5,7 +5,7 @@
     <valueString value="resources-spreadsheet.xml"/>
   </extension>-->
   <url value="http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common"/>
-  <version value="4.0.1"/>
+  <version value="4.1.0"/>
   <name value="CQFCommon"/>
   <title value="Clinical Quality Framework Common FHIR Assets"/>
   <status value="draft"/>
