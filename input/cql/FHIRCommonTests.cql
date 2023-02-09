@@ -27,20 +27,4 @@ define function BaseModifierExtensions(domainResource DomainResource, id String)
 define function BaseModifierExtension(domainResource DomainResource, id String):
 define function BaseModifierExtensions(element BackboneElement, id String):
 define function BaseModifierExtension(element BackboneElement, id String):
-define function USExtensions(domainResource DomainResource, id String):
-define function USExtension(domainResource DomainResource, id String):
-define function USExtensions(element Element, id String):
-define function USExtension(element Element, id String):
-define function USModifierExtensions(domainResource DomainResource, id String):
-define function USModifierExtension(domainResource DomainResource, id String):
-define function USModifierExtensions(element BackboneElement, id String):
-define function USModifierExtension(element BackboneElement, id String):
-define function QIExtensions(domainResource DomainResource, id String):
-define function QIExtension(domainResource DomainResource, id String):
-define function QIExtensions(element Element, id String):
-define function QIExtension(element Element, id String):
-define function QIModifierExtensions(domainResource DomainResource, id String):
-define function QIModifierExtension(domainResource DomainResource, id String):
-define function QIModifierExtensions(element BackboneElement, id String):
-define function QIModifierExtension(element BackboneElement, id String):
 */
