@@ -270,6 +270,22 @@ else
         Interval[start of condition.onset.toInterval(), abatementDate]
 
 /*
+@description: Returns true if the given reference is to the given resource
+@comment: Returns true if the `id` element of the given resource exactly equals the tail of the given reference.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(reference FHIR.Reference, resource FHIR.Resource):
+  resource.id = Last(Split(reference.reference, '/'))  
+
+/*
+@description: Returns true if any of the given references are to the given resource
+@comment: Returns true if the `id` element of the given resource exactly equals the tail of any of the given references.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(references List<FHIR.Reference>, resource FHIR.Resource):
+  exists (references R where R.references(resource))
+  
+/*
 @description: Returns any extensions defined on the given resource with the specified url.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the
