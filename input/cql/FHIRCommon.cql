@@ -112,28 +112,29 @@ high end of the Range plus one year.
 NOTE: Due to the
 complexity of determining a single interval from a Timing or String type, this function will throw a run-time exception if it is used
 with a Timing or String.
+@deprecated: This function is deprecated. Use the fluent function `toInterval()` instead
 */
 define function ToInterval(choice Choice<FHIR.dateTime, FHIR.Period, FHIR.Timing, FHIR.instant, FHIR.string, FHIR.Age, FHIR.Range>):
   case
-	  when choice is FHIR.dateTime then
-    	Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
-		when choice is FHIR.Period then
-  		FHIRHelpers.ToInterval(choice as FHIR.Period)
-		when choice is FHIR.instant then
-			Interval[FHIRHelpers.ToDateTime(choice as FHIR.instant), FHIRHelpers.ToDateTime(choice as FHIR.instant)]
-		when choice is FHIR.Age then
-		  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
-			  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
-		when choice is FHIR.Range then
-		  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
-			  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
-		when choice is FHIR.Timing then
-		  Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute a single interval from a Timing type')
+    when choice is FHIR.dateTime then
+      Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+    when choice is FHIR.Period then
+      FHIRHelpers.ToInterval(choice as FHIR.Period)
+    when choice is FHIR.instant then
+      Interval[FHIRHelpers.ToDateTime(choice as FHIR.instant), FHIRHelpers.ToDateTime(choice as FHIR.instant)]
+    when choice is FHIR.Age then
+      Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+        FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+    when choice is FHIR.Range then
+      Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+        FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+    when choice is FHIR.Timing then
+      Message(null as Interval<DateTime>, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported')
     when choice is FHIR.string then
-      Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
-		else
-			null as Interval<DateTime>
-	end
+      Message(null as Interval<DateTime>, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a String value is not supported')
+    else
+      null as Interval<DateTime>
+  end
 
 /*
 @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval
@@ -164,74 +165,78 @@ with a Timing or String.
 */
 define fluent function toInterval(choice Choice<FHIR.dateTime, FHIR.Period, FHIR.Timing, FHIR.instant, FHIR.string, FHIR.Age, FHIR.Range>):
   case
-	  when choice is FHIR.dateTime then
-    	Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
-		when choice is FHIR.Period then
-  		FHIRHelpers.ToInterval(choice as FHIR.Period)
-		when choice is FHIR.instant then
-			Interval[FHIRHelpers.ToDateTime(choice as FHIR.instant), FHIRHelpers.ToDateTime(choice as FHIR.instant)]
-		when choice is FHIR.Age then
-		  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
-			  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
-		when choice is FHIR.Range then
-		  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
-			  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
-		when choice is FHIR.Timing then
-		  Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute a single interval from a Timing type')
+    when choice is FHIR.dateTime then
+      Interval[FHIRHelpers.ToDateTime(choice as FHIR.dateTime), FHIRHelpers.ToDateTime(choice as FHIR.dateTime)]
+    when choice is FHIR.Period then
+      FHIRHelpers.ToInterval(choice as FHIR.Period)
+    when choice is FHIR.instant then
+      Interval[FHIRHelpers.ToDateTime(choice as FHIR.instant), FHIRHelpers.ToDateTime(choice as FHIR.instant)]
+    when choice is FHIR.Age then
+      Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age),
+        FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(choice as FHIR.Age) + 1 year)
+    when choice is FHIR.Range then
+      Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).low),
+        FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((choice as FHIR.Range).high) + 1 year)
+    when choice is FHIR.Timing then
+      Message(null as Interval<DateTime>, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported')
     when choice is FHIR.string then
-      Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
-		else
-			null as Interval<DateTime>
-	end
+      Message(null as Interval<DateTime>, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a String value is not supported')
+    else
+      null as Interval<DateTime>
+  end
 
 /*
 @description: Returns an interval representing the normalized Abatement of a given Condition resource.
 @comment: NOTE: Due to the complexity of determining an interval from a String, this function will throw
 a run-time exception if used with a Condition instance that has a String as the abatement value.
+@deprecated: This function is deprecated. Use the fluent function `abatementInterval()` instead.
 */
 define function ToAbatementInterval(condition Condition):
-	if condition.abatement is FHIR.dateTime then
-	  Interval[FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime), FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime)]
-	else if condition.abatement is FHIR.Period then
-	  FHIRHelpers.ToInterval(condition.abatement as FHIR.Period)
-	else if condition.abatement is FHIR.string then
-    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
-	else if condition.abatement is FHIR.Age then
-		Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age),
-			FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age) + 1 year)
-	else if condition.abatement is FHIR.Range then
-	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).low),
-		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).high) + 1 year)
-	else if condition.abatement is FHIR.boolean then
-	  Interval[end of ToInterval(condition.onset), condition.recordedDate)
-	else null
+  if condition.abatement is FHIR.dateTime then
+    Interval[FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime), FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime)]
+  else if condition.abatement is FHIR.Period then
+    FHIRHelpers.ToInterval(condition.abatement as FHIR.Period)
+  else if condition.abatement is FHIR.string then
+    Message(null as Interval<DateTime>, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a String value is not supported')
+  else if condition.abatement is FHIR.Age then
+    Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age),
+      FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age) + 1 year)
+  else if condition.abatement is FHIR.Range then
+    Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).low),
+      FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).high) + 1 year)
+  else if condition.abatement is FHIR.boolean then
+    Interval[end of ToInterval(condition.onset), condition.recordedDate)
+  else 
+    null
 
 /*
 @description: Returns an interval representing the normalized Abatement of a given Condition resource.
 @comment: NOTE: Due to the complexity of determining an interval from a String, this function will throw
 a run-time exception if used with a Condition instance that has a String as the abatement value.
 */
-define fluent function toAbatementInterval(condition Condition):
-	if condition.abatement is FHIR.dateTime then
-	  Interval[FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime), FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime)]
-	else if condition.abatement is FHIR.Period then
-	  FHIRHelpers.ToInterval(condition.abatement as FHIR.Period)
-	else if condition.abatement is FHIR.string then
-    Message(null as Interval<DateTime>, true, '1', 'Error', 'Cannot compute an interval from a String value')
-	else if condition.abatement is FHIR.Age then
-		Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age),
-			FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age) + 1 year)
-	else if condition.abatement is FHIR.Range then
-	  Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).low),
-		  FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).high) + 1 year)
-	else if condition.abatement is FHIR.boolean then
-	  Interval[end of ToInterval(condition.onset), condition.recordedDate)
-	else null
+define fluent function abatementInterval(condition Condition):
+  if condition.abatement is FHIR.dateTime then
+    Interval[FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime), FHIRHelpers.ToDateTime(condition.abatement as FHIR.dateTime)]
+  else if condition.abatement is FHIR.Period then
+    FHIRHelpers.ToInterval(condition.abatement as FHIR.Period)
+  else if condition.abatement is FHIR.string then
+    Message(null as Interval<DateTime>, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a String value is not supported')
+  else if condition.abatement is FHIR.Age then
+    Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age),
+      FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity(condition.abatement as FHIR.Age) + 1 year)
+  else if condition.abatement is FHIR.Range then
+    Interval[FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).low),
+      FHIRHelpers.ToDate(Patient.birthDate) + FHIRHelpers.ToQuantity((condition.abatement as FHIR.Range).high) + 1 year)
+  else if condition.abatement is FHIR.boolean then
+    Interval[end of ToInterval(condition.onset), condition.recordedDate)
+  else 
+    null
 
 /*
 @description: Returns an interval representing the normalized prevalence period of a given Condition resource.
 @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from
 onset to abatement as specified in the given Condition.
+@deprecated: This function is deprecated. Use the `prevalenceInterval()` fluent function instead
 */
 define function ToPrevalenceInterval(condition Condition):
 if condition.clinicalStatus ~ "active"
@@ -239,31 +244,42 @@ if condition.clinicalStatus ~ "active"
   or condition.clinicalStatus ~ "relapse" then
   Interval[start of ToInterval(condition.onset), end of ToAbatementInterval(condition)]
 else
-  Interval[start of ToInterval(condition.onset), end of ToAbatementInterval(condition))
+  (end of ToAbatementInterval(condition)) abatementDate
+    return 
+	  if abatementDate is null then
+        Interval[start of ToInterval(condition.onset), abatementDate)
+      else
+        Interval[start of ToInterval(condition.onset), abatementDate]
 
 /*
 @description: Returns an interval representing the normalized prevalence period of a given Condition resource.
-@comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from
+@comment: Uses the toInterval and toAbatementInterval functions to determine the widest potential interval from
 onset to abatement as specified in the given Condition.
 */
-define fluent function toPrevalenceInterval(condition Condition):
+define fluent function prevalenceInterval(condition Condition):
 if condition.clinicalStatus ~ "active"
   or condition.clinicalStatus ~ "recurrence"
   or condition.clinicalStatus ~ "relapse" then
-  Interval[start of ToInterval(condition.onset), end of ToAbatementInterval(condition)]
+  Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()]
 else
-  Interval[start of ToInterval(condition.onset), end of ToAbatementInterval(condition))
+  (end of condition.abatementInterval()) abatementDate
+    return 
+	  if abatementDate is null then
+        Interval[start of condition.onset.toInterval(), abatementDate)
+      else
+        Interval[start of condition.onset.toInterval(), abatementDate]
 
 /*
 @description: Returns any extensions defined on the given resource with the specified url.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the
 CQL model info.
+@deprecated: This function is deprecated. Use the `extensions()` fluent function instead
 */
 define function Extensions(domainResource DomainResource, url String):
   domainResource.extension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns any extensions defined on the given resource with the specified url.
@@ -273,13 +289,14 @@ CQL model info.
 */
 define fluent function extensions(domainResource DomainResource, url String):
   domainResource.extension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns the single extension (if present) on the given resource with the specified url.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `extension()` fluent function instead
 */
 define function Extension(domainResource DomainResource, url String):
   singleton from "Extensions"(domainResource, url)
@@ -296,11 +313,12 @@ define fluent function extension(domainResource DomainResource, url String):
 @description: Returns any extensions defined on the given element with the specified url.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the CQL model info.
+@deprecated: This function is deprecated. Use the `extensions()` fluent function instead
 */
 define function Extensions(element Element, url String):
   element.extension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns any extensions defined on the given element with the specified url.
@@ -309,13 +327,14 @@ content that is defined by extensions but not yet surfaced in the CQL model info
 */
 define fluent function extensions(element Element, url String):
   element.extension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns the single extension (if present) on the given element with the specified url.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `extension()` fluent function instead
 */
 define function Extension(element Element, url String):
   singleton from Extensions(element, url)
@@ -333,11 +352,12 @@ define fluent function extension(element Element, url String):
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the
 CQL model info.
+@deprecated: This function is deprecated. Use the `modifierExtensions()` fluent function instead
 */
 define function ModifierExtensions(domainResource DomainResource, url String):
   domainResource.modifierExtension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns any modifier extensions defined on the given resource with the specified url.
@@ -347,13 +367,14 @@ CQL model info.
 */
 define fluent function modifierExtensions(domainResource DomainResource, url String):
   domainResource.modifierExtension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns the single modifier extension (if present) on the given resource with the specified url.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `modifierExtension()` fluent function instead
 */
 define function ModifierExtension(domainResource DomainResource, url String):
   singleton from ModifierExtensions(domainResource, url)
@@ -370,11 +391,12 @@ define fluent function modifierExtension(domainResource DomainResource, url Stri
 @description: Returns any modifier extensions defined on the given element with the specified url.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the CQL model info.
+@deprecated: This function is deprecated. Use the `modifierExtensions()` fluent function instead
 */
 define function ModifierExtensions(element BackboneElement, url String):
   element.modifierExtension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns any modifier extensions defined on the given element with the specified url.
@@ -383,13 +405,14 @@ content that is defined by extensions but not yet surfaced in the CQL model info
 */
 define fluent function modifierExtensions(element BackboneElement, url String):
   element.modifierExtension E
-	  where E.url = url
-		return E
+    where E.url = url
+    return E
 
 /*
 @description: Returns the single modifier extension (if present) on the given element with the specified url.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `modifierExtension()` fluent function instead
 */
 define function ModifierExtension(element BackboneElement, url String):
   singleton from ModifierExtensions(element, url)
@@ -406,11 +429,12 @@ define fluent function modifierExtension(element BackboneElement, url String):
 @description: Returns any base-FHIR extensions defined on the given resource with the specified id.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the CQL model info.
+@deprecated: This function is deprecated. Use the `baseExtension()` fluent function instead
 */
 define function BaseExtensions(domainResource DomainResource, id String):
   domainResource.extension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns any base-FHIR extensions defined on the given resource with the specified id.
@@ -419,13 +443,14 @@ content that is defined by extensions but not yet surfaced in the CQL model info
 */
 define fluent function baseExtensions(domainResource DomainResource, id String):
   domainResource.extension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns the single base-FHIR extension (if present) on the given resource with the specified id.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `baseExtension()` fluent function instead
 */
 define function BaseExtension(domainResource DomainResource, id String):
   singleton from BaseExtensions(domainResource, id)
@@ -442,11 +467,12 @@ define fluent function baseExtension(domainResource DomainResource, id String):
 @description: Returns any base-FHIR extensions defined on the given element with the specified id.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the CQL model info.
+@deprecated: This function is deprecated. Use the `baseExtensions()` fluent function instead
 */
 define function BaseExtensions(element Element, id String):
   element.extension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns any base-FHIR extensions defined on the given element with the specified id.
@@ -455,13 +481,14 @@ content that is defined by extensions but not yet surfaced in the CQL model info
 */
 define fluent function baseExtensions(element Element, id String):
   element.extension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns the single base-FHIR extension (if present) on the given element with the specified id.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `baseExtension()` fluent function instead
 */
 define function BaseExtension(element Element, id String):
   singleton from BaseExtensions(element, id)
@@ -478,11 +505,12 @@ define fluent function baseExtension(element Element, id String):
 @description: Returns any base-FHIR modifier extensions defined on the given resource with the specified id.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the CQL model info.
+@deprecated: This function is deprecated. Use the `baseModifierExtensions()` fluent function instead
 */
 define function BaseModifierExtensions(domainResource DomainResource, id String):
   domainResource.modifierExtension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns any base-FHIR modifier extensions defined on the given resource with the specified id.
@@ -491,13 +519,14 @@ content that is defined by extensions but not yet surfaced in the CQL model info
 */
 define fluent function baseModifierExtensions(domainResource DomainResource, id String):
   domainResource.modifierExtension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns the single base-FHIR modifier extension (if present) on the given resource with the specified id.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `baseModifierExtension()` fluent function instead
 */
 define function BaseModifierExtension(domainResource DomainResource, id String):
   singleton from BaseModifierExtensions(domainResource, id)
@@ -514,11 +543,12 @@ define fluent function baseModifierExtension(domainResource DomainResource, id S
 @description: Returns any base-FHIR modifier extensions defined on the given element with the specified id.
 @comment: NOTE: Extensions are not the preferred approach, but are used as a way to access
 content that is defined by extensions but not yet surfaced in the CQL model info.
+@deprecated: This function is deprecated. Use the `baseModifierExtensions()` fluent function instead
 */
 define function BaseModifierExtensions(element BackboneElement, id String):
   element.modifierExtension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns any base-FHIR modifier extensions defined on the given element with the specified id.
@@ -527,13 +557,14 @@ content that is defined by extensions but not yet surfaced in the CQL model info
 */
 define fluent function baseModifierExtensions(element BackboneElement, id String):
   element.modifierExtension E
-	  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
-		return E
+    where E.url = ('http://hl7.org/fhir/StructureDefinition/' + id)
+    return E
 
 /*
 @description: Returns the single base-FHIR extension (if present) on the given element with the specified id.
 @comment: This function uses singleton from to ensure that a run-time exception is thrown if there
 is more than one extension on the given resource with the specified url.
+@deprecated: This function is deprecated. Use the `baseModifierExtension()` fluent function instead
 */
 define function BaseModifierExtension(element BackboneElement, id String):
   singleton from BaseModifierExtensions(element, id)
