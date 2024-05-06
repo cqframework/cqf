@@ -72,6 +72,10 @@
       <code value="apply-copyright"/>
       <value value="true"/>
     </parameter>
+    <parameter>
+      <code value="default-version"/>
+      <value value="true"/>
+    </parameter>
     <!-- copyright year is a mandatory parameter -->
     <parameter>
       <code value="copyrightyear"/>
