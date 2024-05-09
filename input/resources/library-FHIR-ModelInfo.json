@@ -13,6 +13,11 @@
   }, {
     "url": "http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-knowledgeRepresentationLevel",
     "valueCode": "structured"
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "http://hl7.org/fhir/us/cqfmeasures/STU3/Device-software-system-example.html"
+    }
   } ],
   "url": "http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo",
   "version": "4.0.1",
