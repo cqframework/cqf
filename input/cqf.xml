@@ -98,11 +98,11 @@
     </parameter-->
     <parameter>
       <code value="path-resource" />
-      <value value="input/vocabulary/codesystem"/>
+      <value value="input/vocabulary/CodeSystem"/>
     </parameter>
     <parameter>
       <code value="path-resource" />
-      <value value="input/vocabulary/valueset"/>
+      <value value="input/vocabulary/ValueSet"/>
     </parameter>
     <parameter>
       <code value="path-liquid"/>
