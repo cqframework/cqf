@@ -104,7 +104,7 @@
   "relatedArtifact": [ {
     "type": "depends-on",
     "display": "FHIR model information",
-    "resource": "https://build.fhir.org/ig/HL7/fhir-qi-core/modelinfo.html"
+    "resource": "http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1"
   }, {
     "type": "depends-on",
     "display": "Library FHIRHelpers",
@@ -132,7 +132,7 @@
   }, {
     "type": "depends-on",
     "display": "Code system RequestIntent",
-    "resource": "http://hl7.org/fhir/request-intent"
+    "resource": "http://terminology.hl7.org/CodeSystem/request-intent"
   }, {
     "type": "depends-on",
     "display": "Code system MedicationRequestCategory",
