@@ -16,11 +16,6 @@
   }, {
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
     "valueReference": {
-      "reference": "http://hl7.org/fhir/us/cqfmeasures/STU3/Device-software-system-example.html"
-    }
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
-    "valueReference": {
       "reference": "Device/cqf-tooling"
     }
   } ],
