@@ -37,11 +37,7 @@
   <pre><code class="language-xml">&lt;dependsOn id=&quot;cqf&quot;&gt;
   &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common&quot;/&gt;
   &lt;packageId value=&quot;fhir.cqf.common&quot;/&gt;
-  &lt;!--NOTE: Use the dev version here because the CQF IG has not yet been published.
-  Note that this also means that the CQF IG must be built locally in order to be installed in your local FHIR package cache
   &lt;version value=&quot;4.0.1&quot;/&gt;
-  --&gt;
-  &lt;version value=&quot;dev&quot;/&gt;
 &lt;/dependsOn&gt;</code></pre>
 
   <a name="fhir-modelinfo"> </a>
