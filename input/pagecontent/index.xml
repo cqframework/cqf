@@ -1,90 +1,33 @@
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
-  <a name="introduction"> </a>
+  <!-- The spaces between the open and close "a" tag are mandatory.  (Cuz HTML renderers are dumb...) -->
+  <a name="intro"> </a>
   <h3>Introduction</h3>
-  <p>This implementation guide contains common HL7® Fast Healthcare Interoperability
-    Resources (<a href="http://hl7.org/fhir">FHIR®</a>) assets for use in content IGs
-    built using the approach and specifications developed as part of the Clinical
-    Quality Framework (<a href="https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework">CQF</a>)
-    initiative, including the FHIRHelpers and FHIR-ModelInfo libraries.</p>
-  <p>The CQF approach brings a suite of standards and methodologies to bear on the problem
-    of authoring, sharing, and evaluating clinical knowledge, with the goal of streamlining
-    the development and implementation of guideline-based clinical care.</p>
-  <p>For more information on this approach, see the <a href="http://hl7.org/fhir/uv/cpg/approach.html">Approach</a>
-  and <a href="http://hl7.org/fhir/uv/cpg/methodology.html">Methodology</a> sections of the FHIR
-  Clinical Guidelines implementation guide.</p>
-  <p>This implementation guide was built as part of the Clinical Quality Framework community
-    by identifying and refactoring common patterns used across <a href="https://github.com/cqframework/clinical_quality_language/wiki/Community-Projects#content">projects</a>.
-    Feedback and contributions are welcome and can be submitted using the New Issue link in the footer of every page. Discussions on the
-    use of this IG as well as other CQF projects take place regularly on the <a href="https://confluence.hl7.org/display/CDS/CPGonFHIR">CPG-on-FHIR calls</a>,
-    a subworkgroup of the HL7 Clinical Decision Support Workgroup.</p>
-  <a name="roadmap"> </a>
-  <h3>Roadmap</h3>
-  <p>This project uses the <a href="http://fhir.org/community/process/">FHIR Community Process</a>. For
-  complete documentation on the change management process used, refer to the
-  <a href="https://github.com/cqframework/cqf/blob/master/CHANGE_MANAGEMENT.md">Change Management</a> documentation.
+	<p>
+    What is this IG about (in patient/non-expert friendly terms).
   </p>
-  <p>This first release of the CQF Common implementation guide supports use of CQL v1.4+ with FHIR v4.01 and CPG v1.0.0. This
-    content will be periodically updated as required to incorporate support for new versions of FHIR, CQL, and CPG as they are
-    published, and as needed by projects that make use of these assets.</p>
-  <p>To submit feedback on this project, submit a <a href="https://github.com/cqframework/cqf/issues/new">New Issue</a> on
-  Github (also linked in the Propose a change link in the footer of every page of the IG).</p>
-
-  <a name="contents"> </a>
-  <h3>Contents</h3>
-  <p>This implementation guide contains libraries that facilitate the use of CQL with FHIR®, as explained in the sections
-    below. To use these libraries in your implementation guide, include a reference to this implementation guide as
-    an implementation guide dependency:</p>
-  <pre><code class="language-xml">&lt;dependsOn id=&quot;cqf&quot;&gt;
-  &lt;uri value=&quot;http://fhir.org/guides/cqf/common/ImplementationGuide/fhir.cqf.common&quot;/&gt;
-  &lt;packageId value=&quot;fhir.cqf.common&quot;/&gt;
-  &lt;!--NOTE: Use the dev version here because the CQF IG has not yet been published.
-  Note that this also means that the CQF IG must be built locally in order to be installed in your local FHIR package cache
-  &lt;version value=&quot;4.0.1&quot;/&gt;
-  --&gt;
-  &lt;version value=&quot;dev&quot;/&gt;
-&lt;/dependsOn&gt;</code></pre>
-
-  <a name="fhir-modelinfo"> </a>
-  <h4>FHIR ModelInfo</h4>
-  <p>Clinical Quality Language (<a href="http://cql.hl7.org">CQL</a>) is a high-level,
-  domain-specific language focused on clinical quality and targeted at measure and
-  decision support artifact authors. In addition, the CQL specification provides a
-  machine-readable canonical representation called Expression Logical Model
-  (<a href="https://cql.hl7.org/04-logicalspecification.html">ELM</a>) targeted at
-  implementations and designed to enable automated sharing of clinical knowledge.</p>
-  <p>To use CQL with FHIR, <a href="https://cql.hl7.org/07-physicalrepresentation.html#data-model-references">model
-  information</a> must be provided to the implementation environment. The <a href="Library-FHIR-ModelInfo.html">FHIR-ModelInfo</a>
-  library provides this information for FHIR. To use FHIR, include a <a href="https://cql.hl7.org/02-authorsguide.html#data-models">using
-  declaration</a> as shown in the example below:</p>
-  <pre><code class="language-cql">using FHIR version '4.0.1'</code></pre>
-  <p>Although not required by CQL, current best-practice is to include the version of FHIR.</p>
-  <a name="fhir-helpers"> </a>
-  <h4>FHIR Helpers</h4>
-  <p>As an exchange specification, FHIR has a rich syntax for expressing the values of elements defined in FHIR
-  resources. In particular, FHIR data types for representing basic values such as integers, strings, and dates and
-  times allow for <a href="http://hl7.org/fhir/extensibility.html#extension">extensions</a>. This means that a FHIR
-  <code>string</code> is not just a string value, but has elements (specifically, <code>id</code>, <code>extension</code>, and
-  <code>value</code>, where the <code>value</code> element contains the actual string value). This means that to access
-  the actual value of a FHIR <code>string</code> element in CQL, authors would need to reference the <code>value</code> element:</p>
-  <pre><code class="language-cql">define "Patient is Female":
-  Patient.gender.value = 'female'</code></pre>
-  <p>To avoid this, the FHIRHelpers library defines implicit conversions for all the FHIR types, allowing authors to treat
-  FHIR elements as integers, strings, etc. directly:</p>
-  <pre><code class="language-cql">define "Patient is Female":
-  Patient.gender = 'female'</code></pre>
-  <p>Note that these conversions are performed automatically by the <a href="https://github.com/cqframework/clinical_quality_language/blob/master/Src/java/cql-to-elm/OVERVIEW.md">
-  CQL-to-ELM translator</a> when they are used by CQL, resulting in a conversion error if the FHIRHelpers library is not included using
-  an <a href="https://cql.hl7.org/02-authorsguide.html#libraries">include declaration</a>:</p>
-  <pre><code class="language-cql">include FHIRHelpers version '4.0.1'</code></pre>
-  <p>Again, the version of the library is not required by CQL, but for the FHIRHelpers reference, because it is so closely tied to the
-  FHIR ModelInfo, current best-practice is to include the version of FHIRHelpers. This does not imply that all library references
-  should be versioned, that is a decision left up to implementations.</p>
-
-  <a name="fhir-common"> </a>
-  <h4>FHIR Common</h4>
-  <p>In addition to FHIR Helpers, the <a href="Library-FHIRCommon.html">FHIR Common</a> library contains several useful constructs for
-    FHIR-based CQL artifact development, including declarations for commonly used terminologies,
-    as well as functions for dealing with common choice patterns and extensions.</p>
-  <p>Note that FHIRCommon is not a "well-known" library name, so it must be included using it's namespace:</p>
-  <pre><code class="language-cql">include fhir.cqf.common.FHIRCommon</code></pre>
+	<a name="technical"> </a>
+	<h3>Technical Overview</h3>
+	<p>
+    Additional detail/context setting for those who have significant background in the domain.  (Try to make as understandable as you can, but
+    set important context).
+  </p>
+  <a name="walkthrough"> </a>
+  <p>
+    The main sections of this IG are:
+  </p>
+  <ul>
+    <li>
+      <a href="background.html">Background</a> - provides business context for the implementation guide and information that implementers should be
+      familiar with before reading the remainder of the IG.  There could be multiple pages for this.
+    </li>
+    <li>
+      <a href="spec.html">Detailed Specification</a> - The actual stuff implementers are expected to do.  (Could be multiple pages for this.)
+    </li>
+    <li>
+      <a href="downloads.html">Downloads</a> - Allows downloading a copy of this implementation guide and other useful information
+    </li>
+    <li>
+      <a href="examples.html">Examples</a> - The examples page provides an index of all the examples defined as part of the Sample Content IG
+    </li>
+  </ul>
 </div>
