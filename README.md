@@ -1,5 +1,5 @@
 # CQF Common
-
+ 
 This implementation guide contains common FHIR assets for use in Clinical Quality Framework content IGs, including the FHIRHelpers and FHIR-ModelInfo libraries.
 
 The [Clinical Quality Framework](https://confluence.hl7.org/display/CQIWC/Clinical+Quality+Framework) is a joint effort of the Clinical Decision Support and Clinical Quality Information Work Groups of Health Level 7 International to identify, develop, and harmonize standards that promote integration and reuse between Clinical Decision Support (CDS) and Clinical Quality Measurement (CQM).
