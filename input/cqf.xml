@@ -26,7 +26,7 @@
   </jurisdiction>
   <copyright value="© Alphora 2019+"/>
   <packageId value="fhir.cqf.common"/>
-  <license value="Apache-2.0"/>
+  <license value="CC0-1.0"/>
   <fhirVersion value="4.0.1"/>
   <dependsOn id="cql">
     <uri value="http://hl7.org/fhir/uv/cql/ImplementationGuide/hl7.fhir.uv.cql"/>
